@@ -120,5 +120,54 @@ python manage.py shell
 ```
 
 - see the [tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial02/)
+- For more information on model relations, see [Accessing related objects](https://docs.djangoproject.com/en/3.2/ref/models/relations/). For more on how to use double underscores to perform field lookups via the API, see [Field lookups](https://docs.djangoproject.com/en/3.2/topics/db/queries/#field-lookups-intro). For full details on the database API, see our [Database API reference](https://docs.djangoproject.com/en/3.2/topics/db/queries/).
 
+## Introducing the Django Admin
+
+### Philosophy
+
+Generating admin sites for your staff or clients to add, change, and delete content is tedious work that doesn’t require much creativity. For that reason, Django entirely automates creation of admin interfaces for models.
+
+Django was written in a newsroom environment, with a very clear separation between “content publishers” and the “public” site. Site managers use the system to add news stories, events, sports scores, etc., and that content is displayed on the public site. Django solves the problem of creating a unified interface for site administrators to edit content.
+
+The admin isn’t intended to be used by site visitors. It’s for site managers.
+
+### Creating an admin user
+
+``` bash
+python manage.py createsuperuser
+```
+
+- start the server
+
+``` bash
+python manage.py runserver
+```
+
+- visit [http://localhost:8000/admin](http://localhost:8000/admin)
+- we need to tell the admin that Question objects have an admin interface. To do this, open the [polls2/admin.py](pasusite/polls2/admin.py) file, and edit it to look like this:
+
+``` python
+from django.contrib import admin
+from .models import Question
+admin.site.register(Question)
+```
+
+- and play with [the admin interface](http://localhost:8000/admin) again
+
+## Writing more views ([Tutorial 3](https://docs.djangoproject.com/en/3.2/intro/tutorial03/))
+
+- add a few more views to polls/views.py
+
+``` python
+def detail(request, question_id):
+    return HttpResponse("You're looking at question %s." % question_id)
+
+def results(request, question_id):
+    response = "You're looking at the results of question %s."
+    return HttpResponse(response % question_id)
+
+def vote(request, question_id):
+    return HttpResponse("You're voting on question %s." % question_id)
+```
 
