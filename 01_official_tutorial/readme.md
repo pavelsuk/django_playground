@@ -112,3 +112,13 @@ We’ll cover them in more depth in a later part of the tutorial, but for now, r
 - Change your models (in models.py).
 - Run `python manage.py makemigrations` to create migrations for those changes
 - Run `python manage.py migrate` to apply those changes to the database.
+
+## Playing with the API
+
+``` python
+python manage.py shell
+```
+
+- see the [tutorial](https://docs.djangoproject.com/en/3.2/intro/tutorial02/)
+
+
