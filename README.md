@@ -1,2 +1,2 @@
-# django_playground
+# Django Playground
 Playground for various Django tutorials
