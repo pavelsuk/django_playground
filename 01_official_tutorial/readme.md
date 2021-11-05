@@ -254,3 +254,19 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 ```
+
+### A shortcut: render()
+
+It’s a very common idiom to load a template, fill a context and return an HttpResponse object with the result of the rendered template. Django provides a shortcut. Here’s the full index() view (polls/views.py), rewritten:
+
+``` python
+from django.shortcuts import render
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)
+```

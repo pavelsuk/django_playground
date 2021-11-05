@@ -1,9 +1,10 @@
 from django.http import HttpResponse
 from django.template import loader
+from django.shortcuts import render
 
 from .models import Question
 
-
+''' naive implementation
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     template = loader.get_template('polls2/index.html')
@@ -11,6 +12,12 @@ def index(request):
         'latest_question_list': latest_question_list,
     }
     return HttpResponse(template.render(context, request))
+'''
+# better implementation using render
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls2/index.html', context)
 
 def hopla(request):
     return HttpResponse("Hopla lopla")
