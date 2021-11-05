@@ -373,3 +373,4 @@ See [https://docs.djangoproject.com/en/3.2/topics/class-based-views/](https://do
 
 - create a directory called **static** in your polls directory. Django will look for static files there, similarly to how Django finds templates inside polls/templates/
 
+## Customize the admin form ([part 7](https://docs.djangoproject.com/en/3.2/intro/tutorial07/))
