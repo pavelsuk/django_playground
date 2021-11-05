@@ -40,3 +40,39 @@ cd <your_site>
 python manage.py startapp polls
 ```
 
+- Edit views.py
+
+``` python
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+```
+
+- Create/Edit **urls.py**
+
+``` python
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+]
+```
+
+- Edit urls.py in <my_site> folder
+
+``` python
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('polls/', include('polls.urls')),
+    path('admin/', admin.site.urls),
+]
+```
+
+- Run `python manage.py runserver`
+- Check [http://localhost:8000/polls/](http://localhost:8000/polls/)
