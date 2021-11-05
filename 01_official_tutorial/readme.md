@@ -76,3 +76,8 @@ urlpatterns = [
 
 - Run `python manage.py runserver`
 - Check [http://localhost:8000/polls/](http://localhost:8000/polls/)
+
+- Play with urls.py in pools directory to include other pathes
+  
+## Database setup
+
