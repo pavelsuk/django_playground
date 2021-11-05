@@ -270,3 +270,35 @@ def index(request):
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
 ```
+
+## Let's show details of the question
+
+- Add in polls/view/py
+
+``` python
+from django.http import Http404
+from django.shortcuts import render
+
+from .models import Question
+# ...
+def detail(request, question_id):
+    try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'polls/detail.html', {'question': question})
+```
+
+- and add polls/detail.html
+
+``` javascript
+{{ question }}
+```
+
+- let's add 404 handling by A **shortcut: `get_object_or_404()`** 
+
+``` python
+def detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
+```
