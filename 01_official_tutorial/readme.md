@@ -302,3 +302,24 @@ def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/detail.html', {'question': question})
 ```
+
+- add full detail, including choices
+
+``` javascript
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+```
+
+- See also [Templaes](https://docs.djangoproject.com/en/3.2/topics/templates/)
+
+## Removing hardcoded URLs in templates
+
+The problem with this hardcoded, tightly-coupled approach is that it becomes challenging to change URLs on projects with a lot of templates. However, since you defined the name argument in the path() functions in the polls.urls module, you can remove a reliance on specific URL paths defined in your url configurations by using the {% url %} template tag:
+
+``` html
+<li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+```
