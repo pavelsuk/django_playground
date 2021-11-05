@@ -342,3 +342,31 @@ Let’s update our poll detail template (“polls/detail.html”) from the last 
 <input type="submit" value="Vote">
 </form>
 ```
+
+## [Use generic views: Less code is better](https://docs.djangoproject.com/en/3.2/intro/tutorial04/#use-generic-views-less-code-is-better)
+
+### Amend URLconf
+
+- open the polls/urls.py URLconf and change it like so:
+
+``` python
+from django.urls import path
+
+from . import views
+
+app_name = 'polls'
+urlpatterns = [
+    path('', views.IndexView.as_view(), name='index'),
+    path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+    path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
+]
+```
+
+Note that the name of the matched pattern in the path strings of the second and third patterns has changed from **question_id** to **pk**
+
+See [https://docs.djangoproject.com/en/3.2/topics/class-based-views/](https://docs.djangoproject.com/en/3.2/topics/class-based-views/)
+
+## Introducing automated testing ([part 5](https://docs.djangoproject.com/en/3.2/intro/tutorial05/))
+
+## Customize your app’s look and feel([part 6](https://docs.djangoproject.com/en/3.2/intro/tutorial06/))
