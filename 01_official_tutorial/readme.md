@@ -370,3 +370,6 @@ See [https://docs.djangoproject.com/en/3.2/topics/class-based-views/](https://do
 ## Introducing automated testing ([part 5](https://docs.djangoproject.com/en/3.2/intro/tutorial05/))
 
 ## Customize your app’s look and feel([part 6](https://docs.djangoproject.com/en/3.2/intro/tutorial06/))
+
+- create a directory called **static** in your polls directory. Django will look for static files there, similarly to how Django finds templates inside polls/templates/
+
