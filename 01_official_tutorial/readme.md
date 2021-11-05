@@ -81,3 +81,34 @@ urlpatterns = [
   
 ## Database setup
 
+- we need to create the tables in the database before we can use them. To do that, run the following command:
+
+``` bash
+python manage.py migrate
+```
+
+## Creating models
+
+- we’ll create two models: **Question** and **Choice**. A **Question** has a question and a publication date. A **Choice** has two fields: the text of the choice and a vote tally. Each Choice is associated with a Question.
+- Edit pools/models.py
+  
+``` python
+from django.db import models
+
+
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField('date published')
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+```
+
+We’ll cover them in more depth in a later part of the tutorial, but for now, remember the three-step guide to making model changes:
+
+- Change your models (in models.py).
+- Run `python manage.py makemigrations` to create migrations for those changes
+- Run `python manage.py migrate` to apply those changes to the database.
