@@ -322,4 +322,23 @@ The problem with this hardcoded, tightly-coupled approach is that it becomes cha
 
 ``` html
 <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
-``
+```
+
+## Write a minimal form ([part 4](https://docs.djangoproject.com/en/3.2/intro/tutorial04/))
+
+Let’s update our poll detail template (“polls/detail.html”) from the last tutorial, so that the template contains an HTML **form** element:
+
+``` html
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ question.question_text }}</h1></legend>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    {% endfor %}
+</fieldset>
+<input type="submit" value="Vote">
+</form>
+```
