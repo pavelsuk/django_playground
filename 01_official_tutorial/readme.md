@@ -30,5 +30,13 @@
 - Jumpstart the project by
 
 ``` bash
-django-admin startproject mysite
+django-admin startproject <your_site>
 ```
+
+- Create your first app **pools** within root folder
+
+``` bash
+cd <your_site>
+python manage.py startapp polls
+```
+
