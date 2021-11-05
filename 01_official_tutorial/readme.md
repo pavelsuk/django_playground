@@ -295,7 +295,7 @@ def detail(request, question_id):
 {{ question }}
 ```
 
-- let's add 404 handling by A **shortcut: `get_object_or_404()`** 
+- let's add 404 handling by A **shortcut: `get_object_or_404()`**
 
 ``` python
 def detail(request, question_id):
@@ -322,4 +322,4 @@ The problem with this hardcoded, tightly-coupled approach is that it becomes cha
 
 ``` html
 <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
-```
+``
